@@ -2,6 +2,9 @@
 
 [cite_start]本專案旨在解決交通信號控制（Traffic Signal Control, TSC）在深度強化學習（DRL）領域中所面臨的環境破碎與難以復現之問題 [cite: 1, 18, 23][cite_start]。透過 **LibSignal** 框架，我們實現了演算法與模擬器之間的解耦，確保實驗的科學嚴謹性與可重現性 [cite: 30, 33, 36]。
 
+## Demo 報告
+影片網址：[https://www.youtube.com/watch?v=dsb47RxcuKM](https://www.youtube.com/watch?v=dsb47RxcuKM)
+
 ---
 
 ## 核心問題與背景
