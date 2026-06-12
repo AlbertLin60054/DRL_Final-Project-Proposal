@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LibSignal DRL Framework Infographic</title>
+  <!-- Load Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Load FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- MathJax Configuration and Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --navy-dark: #0b132b;
+      --navy-light: #1c2541;
+      --text-main: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      
+      /* Accent Colors matching the DQN poster style */
+      --color-green: #10b981;
+      --color-blue: #3b82f6;
+      --color-orange: #f59e0b;
+      --color-red: #ef4444;
+      --color-purple: #8b5cf6;
+      
+      /* Card backgrounds */
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 2.5rem;
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
+      color: white;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header-left h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.3rem;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-left p {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-icon {
+      font-size: 2.5rem;
+      color: var(--color-green);
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    /* Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Full width row for Section 1 */
+    .full-width {
+      grid-column: span 3;
+    }
+
+    /* Section Card */
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1.5px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Section Headers */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1.5px solid var(--border-color);
+      padding-bottom: 0.8rem;
+    }
+
+    .card-num {
+      background-color: var(--navy-dark);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--navy-dark);
+    }
+
+    /* Color coding for cards matching DQN image */
+    .card.blue-theme { border-color: var(--color-blue); }
+    .card.blue-theme .card-num { background-color: var(--color-blue); }
+    .card.blue-theme .card-title { color: var(--color-blue); }
+
+    .card.green-theme { border-color: var(--color-green); }
+    .card.green-theme .card-num { background-color: var(--color-green); }
+    .card.green-theme .card-title { color: var(--color-green); }
+
+    .card.orange-theme { border-color: var(--color-orange); }
+    .card.orange-theme .card-num { background-color: var(--color-orange); }
+    .card.orange-theme .card-title { color: var(--color-orange); }
+
+    .card.red-theme { border-color: var(--color-red); }
+    .card.red-theme .card-num { background-color: var(--color-red); }
+    .card.red-theme .card-title { color: var(--color-red); }
+
+    .card.purple-theme { border-color: var(--color-purple); }
+    .card.purple-theme .card-num { background-color: var(--color-purple); }
+    .card.purple-theme .card-title { color: var(--color-purple); }
+
+    /* Section 1: Overall Procedure Horizontal Flow */
+    .flow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .flow-step {
+      flex: 1;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+      color: var(--navy-light);
+    }
+
+    .flow-step-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--navy-dark);
+    }
+
+    .flow-step-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 1.2rem;
+    }
+
+    .flow-tags-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .flow-tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background-color: #f1f5f9;
+      color: var(--text-light);
+    }
+    .flow-tag.green { background-color: rgba(16, 185, 129, 0.1); color: var(--color-green); }
+    .flow-tag.blue { background-color: rgba(59, 130, 246, 0.1); color: var(--color-blue); }
+    .flow-tag.orange { background-color: rgba(245, 158, 11, 0.1); color: var(--color-orange); }
+    .flow-tag.red { background-color: rgba(239, 68, 68, 0.1); color: var(--color-red); }
+
+    /* Section 2: Architecture Layout */
+    .arch-box {
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      background-color: #f8fafc;
+    }
+    .arch-box:last-child { margin-bottom: 0; }
+    .arch-box-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .arch-box-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+    .arch-box-desc ul {
+      padding-left: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    /* Section 3: Tool Schemas Code-style block */
+    .schema-block {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.8rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+      margin-bottom: 0.8rem;
+    }
+    .schema-block:last-child { margin-bottom: 0; }
+    .schema-title {
+      color: var(--color-red);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .schema-comment { color: #64748b; }
+
+    /* Section 4: Conflict Resolution Diagram */
+    .conflict-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .conflict-input {
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 8px;
+      padding: 0.6rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .conflict-step {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.6rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .conflict-step i { color: var(--color-orange); }
+    .conflict-arrow {
+      text-align: center;
+      color: var(--color-orange);
+      font-size: 0.9rem;
+      margin: -0.3rem 0;
+    }
+
+    /* Section 5: Evaluation Table */
+    .eval-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .eval-table th, .eval-table td {
+      border: 1px solid var(--border-color);
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .eval-table th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+    .eval-badge {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      background-color: rgba(59, 130, 246, 0.1);
+      color: var(--color-blue);
+    }
+
+    /* Section 6: Best Practices Checkbox */
+    .practice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .practice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+    }
+    .practice-item i {
+      color: var(--color-purple);
+      margin-top: 0.2rem;
+    }
+    .practice-item span strong {
+      color: var(--navy-dark);
+    }
+
+    /* Section 7: Summary Loop (Circular/Process representation) */
+    .loop-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .circular-loop {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      border: 6px dashed var(--color-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: #fff;
+    }
+    .loop-center-text {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--color-green);
+      line-height: 1.2;
+    }
+    .loop-node {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    /* Position nodes on circle */
+    .node1 { top: -12px; left: 58px; }
+    .node2 { top: 20px; right: -12px; }
+    .node3 { bottom: 20px; right: -12px; }
+    .node4 { bottom: -12px; left: 58px; }
+    .node5 { bottom: 20px; left: -12px; }
+    .node6 { top: 20px; left: -12px; }
+
+    .loop-legend {
+      width: 100%;
+      font-size: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .legend-num {
+      background-color: var(--color-green);
+      color: white;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>LIBSIGNAL: 交通信號控制深度強化學習的標準化框架</h1>
+      <p>A Standardized DRL Framework for Traffic Signal Control</p>
+    </div>
+    <div class="header-right">
+      <div class="header-icon">
+        <i class="fa-solid fa-traffic-light"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid Container -->
+  <div class="grid-container">
+    
+    <!-- 1. Overall Procedure Horizontal Flow (Full Width) -->
+    <div class="card green-theme full-width">
+      <div class="card-header">
+        <div class="card-num">1</div>
+        <div class="card-title">Overall DRL-TSC Control Procedure</div>
+      </div>
+      <div class="flow-container">
+        
+        <div class="flow-step">
+          <div class="flow-step-icon"><i class="fa-solid fa-eye"></i></div>
+          <div class="flow-step-title">1. Observe Traffic</div>
+          <div class="flow-step-desc">SUMO/CityFlow lanes output queue length & density</div>
+        </div>
+        
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        
+        <div class="flow-step">
+          <div class="flow-step-icon"><i class="fa-solid fa-shuffle"></i></div>
+          <div class="flow-step-title">2. Wrapper Convert</div>
+          <div class="flow-step-desc">OpenAI Gym wrapper normalizes observation data</div>
+        </div>
+        
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        
+        <div class="flow-step">
+          <div class="flow-step-icon"><i class="fa-solid fa-gears"></i></div>
+          <div class="flow-step-title">3. Agent Action</div>
+          <div class="flow-step-desc">DRL Model selects optimal phase every 10s</div>
+        </div>
+        
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        
+        <div class="flow-step">
+          <div class="flow-step-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="flow-step-title">4. Safety Guardrail</div>
+          <div class="flow-step-desc">Inject minimum green duration & yellow transition</div>
+        </div>
+        
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        
+        <div class="flow-step">
+          <div class="flow-step-icon"><i class="fa-solid fa-play"></i></div>
+          <div class="flow-step-title">5. Simulate & Learn</div>
+          <div class="flow-step-desc">Advance simulation, compute reward & train agent</div>
+        </div>
+        
+      </div>
+      
+      <div class="flow-tags-row">
+        <span class="flow-tag green">Environment Observation (Step 1-2)</span>
+        <span class="flow-tag blue">Agent Decision (Step 3)</span>
+        <span class="flow-tag red">Safety Constraints (Step 4)</span>
+        <span class="flow-tag orange">Model Training (Step 5)</span>
+      </div>
+    </div>
+
+    <!-- Column 1: Architecture & Trinity -->
+    
+    <!-- 2. System Architecture -->
+    <div class="card blue-theme">
+      <div class="card-header">
+        <div class="card-num">2</div>
+        <div class="card-title">System Architecture Layers</div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-server"></i> Environment Layer</div>
+        <div class="arch-box-desc">
+          Supports mainstream traffic simulators (SUMO & CityFlow), decoupling simulation mechanics from DRL algorithms.
+        </div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-cube"></i> Wrapper Interface</div>
+        <div class="arch-box-desc">
+          Implements OpenAI Gym standard APIs. Standardizes data format of states, actions, and rewards.
+        </div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-brain"></i> Agent Layer</div>
+        <div class="arch-box-desc">
+          Hosts multiple standardized TSC reinforcement learning models (DQN, FRAP, CoLight, etc.) for fair comparison.
+        </div>
+      </div>
+    </div>
+    
+    <!-- 3. The RL Trinity -->
+    <div class="card red-theme">
+      <div class="card-header">
+        <div class="card-num">3</div>
+        <div class="card-title">The RL Trinity (強化學習三要素)</div>
+      </div>
+      
+      <div class="schema-block">
+        <div class="schema-title"><span>State Space (Observation)</span></div>
+        • Lane Density (車道車輛密度)<br>
+        • Current Phase (當前綠燈相位)<br>
+        • Queue Length (各方向紅燈排隊長度)
+      </div>
+      
+      <div class="schema-block">
+        <div class="schema-title"><span>Action Space</span></div>
+        • Decided every 10s (每10秒決策一次)<br>
+        • Action: Select optimal phase from a set<br>
+        • Forces 3-5s yellow light interval (強制安全黃燈)
+      </div>
+      
+      <div class="schema-block">
+        <div class="schema-title"><span>Reward Function</span></div>
+        $$R = -\sum(\text{Queue Length} + \beta \times \text{Delay})$$<br>
+        <span class="schema-comment">// Guides agent to minimize queue length and delay</span>
+      </div>
+    </div>
+
+    <!-- Column 2: Dynamic Phase & Algorithms -->
+    
+    <!-- 4. Dynamic Phase Execution -->
+    <div class="card orange-theme">
+      <div class="card-header">
+        <div class="card-num">4</div>
+        <div class="card-title">Dynamic Phase Execution</div>
+      </div>
+      <div class="conflict-flow">
+        <div class="conflict-input">
+          <strong>Traditional Fixed-Time Control:</strong><br>
+          • Cycle: Phase A → Phase B → Phase C → Phase D<br>
+          • Problem: High waiting times during off-peak hours
+        </div>
+        <div class="conflict-arrow"><i class="fa-solid fa-circle-chevron-down"></i></div>
+        <div class="conflict-step">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span><strong>Dynamic Jumping (LibSignal)</strong><br>Skip empty phases; jump directly to the direction with the highest traffic pressure.</span>
+        </div>
+        <div class="conflict-arrow"><i class="fa-solid fa-circle-chevron-down"></i></div>
+        <div class="conflict-step">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span><strong>Safety Guardrails</strong><br>Enforce minimum green light duration (e.g., 10s) and yellow transition to prevent accidents.</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 5. Standardized Algorithms -->
+    <div class="card blue-theme">
+      <div class="card-header">
+        <div class="card-num">5</div>
+        <div class="card-title">Standardized TSC Algorithms</div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-network-wired"></i> DQN (Deep Q-Network)</div>
+        <div class="arch-box-desc">
+          Classic value-based model, maps observed traffic states to optimal phase actions.
+        </div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-code-branch"></i> FRAP</div>
+        <div class="arch-box-desc">
+          Models phase competition via relation networks, achieving invariant symmetry to intersection layouts.
+        </div>
+      </div>
+      
+      <div class="arch-box">
+        <div class="arch-box-title"><i class="fa-solid fa-circle-nodes"></i> CoLight</div>
+        <div class="arch-box-desc">
+          Employs graph attention networks (GAT) to coordinate control signals across multiple intersections.
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3: Metrics & Loop -->
+    
+    <!-- 6. Evaluation Metrics -->
+    <div class="card purple-theme">
+      <div class="card-header">
+        <div class="card-num">6</div>
+        <div class="card-title">Evaluation Metrics</div>
+      </div>
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Description</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Travel Time</strong></td>
+            <td>Average time to traverse network</td>
+            <td><span class="eval-badge">Core KPI</span></td>
+          </tr>
+          <tr>
+            <td><strong>Delay</strong></td>
+            <td>Time lost due to stop & wait</td>
+            <td><span class="eval-badge">Minimize</span></td>
+          </tr>
+          <tr>
+            <td><strong>Throughput</strong></td>
+            <td>Completed vehicles count</td>
+            <td><span class="eval-badge">Maximize</span></td>
+          </tr>
+          <tr>
+            <td><strong>Queue Length</strong></td>
+            <td>Max accumulation at red light</td>
+            <td><span class="eval-badge">Minimize</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="practice-list" style="margin-top: 1.2rem;">
+        <div class="practice-item">
+          <i class="fa-solid fa-circle-check"></i>
+          <span><strong>Reproducibility:</strong> Solves the 15% performance gap across simulators.</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 7. Decision Loop & Best Practices -->
+    <div class="card green-theme">
+      <div class="card-header">
+        <div class="card-num">7</div>
+        <div class="card-title">Orchestration Loop & Practices</div>
+      </div>
+      <div class="loop-container">
+        <div class="circular-loop">
+          <div class="loop-center-text">TSC<br>Training<br>Loop</div>
+          <div class="loop-node node1">1</div>
+          <div class="loop-node node2">2</div>
+          <div class="loop-node node3">3</div>
+          <div class="loop-node node4">4</div>
+          <div class="loop-node node5">5</div>
+          <div class="loop-node node6">6</div>
+        </div>
+        <div class="loop-legend">
+          <div class="legend-item"><span class="legend-num">1</span> Obs State</div>
+          <div class="legend-item"><span class="legend-num">2</span> Gym Wrap</div>
+          <div class="legend-item"><span class="legend-num">3</span> Agent Select</div>
+          <div class="legend-item"><span class="legend-num">4</span> Safety Guard</div>
+          <div class="legend-item"><span class="legend-num">5</span> SUMO Step</div>
+          <div class="legend-item"><span class="legend-num">6</span> Train Model</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
